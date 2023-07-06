@@ -9,24 +9,26 @@
     <div class="text-center">
         <h1 class="mb-3">Обнаружение объектов ЛЭП</h1>
     </div>
-
-    <div class="flex-container">
-      <!-- <div> -->
-          <!-- <div class="img"> -->
-              <!-- <img id="input" width="200"/> -->
-          <!-- </div> -->
-<!--           
-          <input type="file" accept="image/*" onchange="loadFile(event)">
-      </div> -->
-      <form method="post"></form>
-      <img id="input" width="200"/>
-      <input type="file" accept="image/*" onchange="loadFile(event)", enctype="multipart/form-data">
-      <input type="button" value="Upload Image" onclick="uploadFile(event)">
-    </div>
-    <!-- <div style="text-align:center">
-      <button>Найти ЛЭП</button>
-    </div> -->
     
+    <div class="flex-container">
+
+      <div class="select-image">
+        <h2>Исходное изображение</h2>
+        <img id="input" width="200"/>
+        <div class="input">
+          <label>
+            <input type="file" accept="image/*" onchange="loadFile(event)", enctype="multipart/form-data">
+            Загрузить изображение
+          </label>
+        </div>
+      </div>
+
+      <div class="select-image">
+        <h2>Результат</h2>
+        <img id="input" width="200"/>
+        <input class="input" type="button" value="Получить результат" onclick="uploadFile(event)">
+      </div>
+    </div>
 
     <script>
         var img;
