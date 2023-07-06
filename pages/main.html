@@ -6,7 +6,7 @@
     <title>Обнаружение объектов ЛЭП</title>
   </head>
   <body>
-    <div class="text-center">
+    <div>
         <h1 class="mb-3">Обнаружение объектов ЛЭП</h1>
     </div>
     
@@ -29,6 +29,7 @@
         <input class="input" type="button" value="Получить результат" onclick="uploadFile(event)">
       </div>
     </div>
+    <div id="results"></div>
 
     <script>
         var img;
@@ -51,7 +52,20 @@
             .catch(error => {
               console.error(error);
             });
-      }
+          const resultDiv = document.getElementById("results")
+          while (resultDiv && resultDiv.firstChild) {
+            resultDiv.removeChild(resultDiv.firstChild);
+          }
+          const lst = ["lol", "kek", "cheburek", "ahaha", "hehe"]
+          let newDiv, newContent
+          for(let el of lst){
+            newDiv = document.createElement("div")
+            newDiv.className = 'info'
+            newContent = document.createTextNode(el)
+            newDiv.appendChild(newContent)
+            resultDiv.appendChild(newDiv)
+          }
+        }
     </script>
   </body>
 </html>
