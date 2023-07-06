@@ -8,6 +8,6 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    f=codecs.open("index.html", 'r')
+    f=codecs.open("./pages/main.html", 'r')
     content = f.read()
     return HTMLResponse(content=content)
