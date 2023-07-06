@@ -14,10 +14,12 @@
 
       <div class="select-image">
         <h2>Исходное изображение</h2>
-        <img id="input" width="200"/>
+        <div class="image">
+          <img id="input" width="200"/>
+        </div> 
         <div class="input">
           <label>
-            <input type="file" accept="image/*" onchange="loadFile(event)", enctype="multipart/form-data">
+            <input type="file" src="images/select_image.jpg" accept="image/*" onchange="loadFile(event)", enctype="multipart/form-data">
             Загрузить изображение
           </label>
         </div>
@@ -25,7 +27,9 @@
 
       <div class="select-image">
         <h2>Результат</h2>
-        <img id="input" width="200"/>
+        <div class="image">
+          <img id="input" src="images/result_image.jpg", onerror="this.style.display='none'"/>
+        </div>
         <input class="input" type="button" value="Получить результат" onclick="uploadFile(event)">
       </div>
     </div>
@@ -47,7 +51,7 @@
               body: formData,
             })
             .then(response => {
-              console.log(response);
+              location.reload()
             })
             .catch(error => {
               console.error(error);
