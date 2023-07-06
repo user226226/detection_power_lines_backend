@@ -15,7 +15,7 @@ async def get_auth_style():
     return FileResponse('styles/main.css')
 
 @app.post("/image")
-def upload(request: Request, file: UploadFile = File()):
+def upload(file: UploadFile = File(...)):
     try:
         contents = file.file.read()
         with open("uploaded_" + file.filename, "wb") as f:
