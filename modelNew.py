@@ -18,4 +18,4 @@ class LAPDetector:
 
         result = self.model(image)
 
-        return result.render()[0]
+        return result
