@@ -28,7 +28,7 @@
       <div class="select-image">
         <h2>Результат</h2>
         <div class="image">
-          <img id="input" src="images/result_image.jpg", onerror="this.style.display='none'"/>
+          <img id="input_result" src="images/result_image.jpg", onerror="this.style.display='none'"/>
         </div>
         <input class="input" type="button" value="Получить результат" onclick="uploadFile(event)">
       </div>
@@ -62,7 +62,7 @@
                 resultDiv.removeChild(resultDiv.firstChild);
               }
               let newDiv, newContent
-              
+              console.log(results)
               for(var i = 0; i < results.length; i++) {
                 newDiv = document.createElement("div")
                 newDiv.className = 'info'
