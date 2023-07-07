@@ -28,7 +28,11 @@
       <div class="select-image">
         <h2>Результат</h2>
         <div class="image">
+<<<<<<< HEAD
           <img id="input_result" src="images/result_image.jpg", onerror="this.style.display='none'"/>
+=======
+          <img id="input_result", onerror="this.style.display='none'"/>
+>>>>>>> c5e83806c98c40524527dad3486363ead5cea3ad
         </div>
         <input class="input" type="button" value="Получить результат" onclick="uploadFile(event)">
       </div>
@@ -55,8 +59,9 @@
               json = JSON.parse(text)
             
               results = json['result']
-              console.log(results)
-              console.log(results[0])
+              var image = document.getElementById('input_result')
+              image.src = results[0]["imageURL"]
+
               const resultDiv = document.getElementById("results")
               while (resultDiv && resultDiv.firstChild) {
                 resultDiv.removeChild(resultDiv.firstChild);
