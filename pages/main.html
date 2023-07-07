@@ -51,7 +51,7 @@
               body: formData,
             })
             .then(response => {
-              location.reload()
+              console.log(response)
             })
             .catch(error => {
               console.error(error);
@@ -69,6 +69,7 @@
             newDiv.appendChild(newContent)
             resultDiv.appendChild(newDiv)
           }
+          location.reload()
         }
     </script>
   </body>
