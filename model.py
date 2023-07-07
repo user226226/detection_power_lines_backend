@@ -6,5 +6,5 @@ model = project.version(1).model
 
 def get_predict_image(path: str):
     result_model = model.predict(path, confidence=40, overlap=30)
-    result_model.save("images/result_image.jpg")
+    result_model.save("images/predict_image_roboflow.jpg")
     return result_model.json()

@@ -1,10 +1,14 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import HTMLResponse, FileResponse
 from model import get_predict_image
+from PIL import Image
+from modelNew import LAPDetector
+from numpy import asarray
 
 import codecs
 
 app = FastAPI()
+detector = LAPDetector("weights/model.pt")
 
 @app.get("/")
 async def read_root():
@@ -18,17 +22,19 @@ async def get_auth_style():
 
 @app.post("/image")
 async def upload(file: UploadFile = File(...)):
+    path = "images/select_image.jpg"
     try:
         contents = file.file.read()
-        with open("images/select_image.jpg", "wb") as f:
+        with open(path, "wb") as f:
             f.write(contents)
         
     except Exception:
         return {"message": "There was an error uploading the file"}
     finally:
         file.file.close()   
-    
-    return get_predict_image("images/select_image.jpg")
+    result = Image.fromarray(detector.predict(asarray(Image.open(path))))
+    result.save("images/predict_image.jpg")
+    return get_predict_image(path)
 
 @app.get("/images/select_image.jpg")
 async def get_result_image():
