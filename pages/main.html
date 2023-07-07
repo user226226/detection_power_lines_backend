@@ -63,13 +63,57 @@
               while (resultDiv && resultDiv.firstChild) {
                 resultDiv.removeChild(resultDiv.firstChild);
               }
-              let newDiv, newContent
+              let newDiv, newContent, p1
               console.log(results)
               for(var i = 0; i < results.length; i++) {
                 newDiv = document.createElement("div")
                 newDiv.className = 'info'
-                newContent = document.createTextNode(results[i]["predict"])
-                newDiv.appendChild(newContent)
+
+                p = document.createElement("p")
+                p.className = 'row'
+                newContent = document.createTextNode('Вероятность: ' + results[i]['predict'])
+                p.appendChild(newContent)
+                newDiv.appendChild(p)
+
+                p = document.createElement("p")
+                p.className = 'row'
+                newContent = document.createTextNode('Координаты')
+                p.appendChild(newContent)
+                newDiv.appendChild(p)
+
+                p = document.createElement("p")
+                p.className = 'row'
+                newContent = document.createTextNode('x: ' + results[i]['x'])
+                p.appendChild(newContent)
+                newDiv.appendChild(p)
+
+                p = document.createElement("p")
+                p.className = 'row'
+                newContent = document.createTextNode('y: ' + results[i]['y'])
+                p.appendChild(newContent)
+                newDiv.appendChild(p)
+
+                br = document.createElement("br")
+                newDiv.appendChild(br)
+
+                p = document.createElement("p")
+                p.className = 'row'
+                newContent = document.createTextNode('Размер')
+                p.appendChild(newContent)
+                newDiv.appendChild(p)
+
+                p = document.createElement("p")
+                p.className = 'row'
+                newContent = document.createTextNode('width: ' + results[i]['width'])
+                p.appendChild(newContent)
+                newDiv.appendChild(p)
+
+                p = document.createElement("p")
+                p.className = 'row'
+                newContent = document.createTextNode('height: ' + results[i]['height'])
+                p.appendChild(newContent)
+                newDiv.appendChild(p)
+
                 resultDiv.appendChild(newDiv)
               }
             })
