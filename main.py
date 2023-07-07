@@ -32,14 +32,8 @@ async def upload(file: UploadFile = File(...)):
         return {"message": "There was an error uploading the file"}
     finally:
         file.file.close()   
-    result = Image.fromarray(detector.predict(asarray(Image.open(path))))
-    result.save("images/predict_image.jpg")
-    return get_predict_image(path)
+    return detector.predict(asarray(Image.open(path)))
 
-@app.get("/images/select_image.jpg")
-async def get_result_image():
-    return FileResponse('images/select_image.jpg')
-
-@app.get("/images/result_image.jpg")
-async def get_result_image():
-    return FileResponse('images/result_image.jpg')
+@app.get("/images/{image_name}")
+async def get_result_image(image_name: str):
+    return FileResponse(f'images/{image_name}')

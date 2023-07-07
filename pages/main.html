@@ -46,29 +46,34 @@
         var uploadFile = function(event) {
           var formData = new FormData();
           formData.append('file', img);
-            fetch('/image', {
+          fetch('/image', {
               method: 'POST',
               body: formData,
             })
-            .then(response => {
-              console.log(response)
+            .then(response => response.text())
+            .then(text => {
+              json = JSON.parse(text)
+            
+              results = json['result']
+              console.log(results)
+              console.log(results[0])
+              const resultDiv = document.getElementById("results")
+              while (resultDiv && resultDiv.firstChild) {
+                resultDiv.removeChild(resultDiv.firstChild);
+              }
+              let newDiv, newContent
+              
+              for(var i = 0; i < results.length; i++) {
+                newDiv = document.createElement("div")
+                newDiv.className = 'info'
+                newContent = document.createTextNode(results[i]["predict"])
+                newDiv.appendChild(newContent)
+                resultDiv.appendChild(newDiv)
+              }
             })
             .catch(error => {
               console.error(error);
             });
-          const resultDiv = document.getElementById("results")
-          while (resultDiv && resultDiv.firstChild) {
-            resultDiv.removeChild(resultDiv.firstChild);
-          }
-          const lst = ["lol", "kek", "cheburek", "ahaha", "hehe"]
-          let newDiv, newContent
-          for(let el of lst){
-            newDiv = document.createElement("div")
-            newDiv.className = 'info'
-            newContent = document.createTextNode(el)
-            newDiv.appendChild(newContent)
-            resultDiv.appendChild(newDiv)
-          }
         }
     </script>
   </body>
