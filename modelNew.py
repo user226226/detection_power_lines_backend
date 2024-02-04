@@ -29,8 +29,11 @@ class LAPDetector:
             width = x_end - x_start
             height = y_end - y_start
             path = f'images/predict_image_{x_start}{y_start}.jpg'
-            result = Image.fromarray(result.render()[0])
-            result.save(path)
+            try:
+                result = Image.fromarray(result.render()[0])
+                result.save(path)
+            except:
+                print("Image not found")
 
             json.append({
             "x": x_start,

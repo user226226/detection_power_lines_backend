@@ -1,6 +1,7 @@
+import uvicorn
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import HTMLResponse, FileResponse
-from model import get_predict_image
+# from model import get_predict_image
 from PIL import Image
 from modelNew import LAPDetector
 from numpy import asarray
@@ -37,3 +38,6 @@ async def upload(file: UploadFile = File(...)):
 @app.get("/images/{image_name}")
 async def get_result_image(image_name: str):
     return FileResponse(f'images/{image_name}')
+
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="0.0.0.0", port=8000)
